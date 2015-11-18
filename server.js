@@ -22,10 +22,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/test', function (req, res, next) {
-  console.log(JSON.stringify(req.cookies, null, 2));
-  console.log(JSON.stringify(req.headers, null, 2));
   if (req.headers.cookie) {
-    console.log(req.headers.cookie);
     request({
       method: 'GET',
       url: process.env.NW_AUTH_URL,
@@ -39,7 +36,7 @@ app.get('/test', function (req, res, next) {
         return res.status(401).send('NOT AUTHENTICATED');
       }
 
-      return res.send('TESTING 1..2..3..');
+      return res.send('YOU\'RE AUTHENTICATED!!!');
     });
   } else {
     return res.status(401).send('NO COOKIES');
